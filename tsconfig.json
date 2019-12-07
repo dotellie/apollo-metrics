@@ -1,0 +1,17 @@
+{
+  "outDir": "lib",
+  "compilerOptions": {
+    "target": "es2018",
+    "declaration": true,
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "es2019"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
