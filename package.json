@@ -1,6 +1,6 @@
 {
   "name": "apollo-metrics",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "lint": "prettier -c src/**/*",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "author": "dotellie",
   "license": "MIT",
@@ -21,9 +22,14 @@
     "prom-client": "^11.5.3",
     "rollup": "^1.27.8",
     "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.3",
+    "semantic-release": "^15.13.31"
   },
   "peerDependencies": {
     "prom-client": "^11.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dotellie/apollo-metrics.git"
   }
 }
