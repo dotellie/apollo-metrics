@@ -1,7 +1,7 @@
 # Apollo Server Metrics
 
 [![Build Status](https://travis-ci.org/dotellie/apollo-metrics.svg?branch=develop)](https://travis-ci.org/dotellie/apollo-metrics)
-![npm](https://img.shields.io/npm/v/apollo-metrics)
+[![npm](https://img.shields.io/npm/v/apollo-metrics)](https://www.npmjs.com/package/apollo-metrics)
 
 Export Apollo server request information to Prometheus through
 [prom-client](https://github.com/siimon/prom-client).
