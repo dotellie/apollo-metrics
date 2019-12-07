@@ -9,7 +9,8 @@
     "build": "rollup -c rollup.config.js",
     "lint": "prettier -c src/**/*",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build"
   },
   "author": "dotellie",
   "license": "MIT",
