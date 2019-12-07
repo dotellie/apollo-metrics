@@ -136,7 +136,6 @@ export default function createMetricsPlugin(
                 );
               }
             );
-            console.log(tracing.execution.resolvers);
           }
         }
       };
