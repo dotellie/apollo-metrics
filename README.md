@@ -18,7 +18,7 @@ async function start(): Promise<void> {
   try {
     const app = express();
 
-    app.get("/metrics", (_, res) => res.send(register.metrics());
+    app.get("/metrics", (_, res) => res.send(register.metrics()));
     const apolloMetricsPlugin = createMetricsPlugin(register);
 
     const server = new ApolloServer({
