@@ -1,6 +1,6 @@
 import { ApolloServerPlugin } from "apollo-server-plugin-base";
 import { TracingFormat } from "apollo-tracing";
-import { Registry, Counter, labelValues, Histogram } from "prom-client";
+import { Registry, Counter, labelValues, Histogram, HistogramConfiguration } from "prom-client";
 
 const nanosToSec = 1_000_000_000;
 
@@ -69,21 +69,32 @@ export default function createMetricsPlugin(
     registers: [register]
   });
 
-  const resolverTime = new Histogram({
+
+  const resolverTimeHistogramConfig: HistogramConfiguration = {
     name: "graphql_resolver_time",
     help: "The time to resolve a GraphQL field.",
     labelNames: ["parentType", "fieldName", "returnType"],
     registers: [register],
-    buckets: options?.buckets?.graphql_resolver_time
-  });
+  };
 
-  const totalRequestTime = new Histogram({
+  if (options?.buckets?.graphql_resolver_time) {
+    resolverTimeHistogramConfig.buckets = options.buckets.graphql_resolver_time;
+  }
+
+  const resolverTime = new Histogram(resolverTimeHistogramConfig);
+
+  const totalRequestTimeHistogramConfig: HistogramConfiguration = {
     name: "graphql_total_request_time",
     help: "The time to complete a GraphQL query.",
     labelNames: ["operationName", "operation"],
     registers: [register],
-    buckets: options?.buckets?.graphql_total_request_time
-  });
+  }
+
+  if (options?.buckets?.graphql_total_request_time) {
+    totalRequestTimeHistogramConfig.buckets = options.buckets.graphql_total_request_time
+  }
+
+  const totalRequestTime = new Histogram(totalRequestTimeHistogramConfig);;
 
   const metricsPlugin: ApolloServerPlugin = {
     requestDidStart() {
