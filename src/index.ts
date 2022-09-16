@@ -12,8 +12,18 @@ function filterUndefined(from: {
   ) as labelValues;
 }
 
+interface IBucketConfig {
+  graphql_resolver_time?: number[];
+  graphql_total_request_time?: number[];
+}
+
+interface IOptions {
+  buckets?: IBucketConfig;
+}
+
 export default function createMetricsPlugin(
-  register: Registry
+  register: Registry,
+  options?: IOptions
 ): ApolloServerPlugin {
   const parsed = new Counter({
     name: "graphql_queries_parsed",
@@ -63,14 +73,16 @@ export default function createMetricsPlugin(
     name: "graphql_resolver_time",
     help: "The time to resolve a GraphQL field.",
     labelNames: ["parentType", "fieldName", "returnType"],
-    registers: [register]
+    registers: [register],
+    buckets: options?.buckets?.graphql_resolver_time
   });
 
   const totalRequestTime = new Histogram({
     name: "graphql_total_request_time",
     help: "The time to complete a GraphQL query.",
     labelNames: ["operationName", "operation"],
-    registers: [register]
+    registers: [register],
+    buckets: options?.buckets?.graphql_total_request_time
   });
 
   const metricsPlugin: ApolloServerPlugin = {
